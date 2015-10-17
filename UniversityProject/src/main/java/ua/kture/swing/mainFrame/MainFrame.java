@@ -51,7 +51,7 @@ public class MainFrame extends JFrame{
 	public MainFrame(){
 		
 		MainFrame.getInstance();
-		//fillContainer();
+		fillContainer();
 		
 		mainWindow.setBounds(100, 100, 600, 400);
 		mainWindow.setLayout(new BorderLayout());
@@ -72,26 +72,24 @@ public class MainFrame extends JFrame{
 		
 		mainWindow.setVisible(true);
 		
-//		mainWindow.add(viewList, BorderLayout.CENTER);
-//		viewList.setModel(productData);
 		buttonAdd.addMouseListener(new MouseAdapter(){
 			public void mouseClicked(MouseEvent event){
-				AddFrame addWin = new AddFrame();
+				new AddFrame();
 			}
 		});
 		buttonSearch.addMouseListener(new MouseAdapter(){
 			public void mouseClicked(MouseEvent event){
-				SearchFrame searchWin = new SearchFrame();
+				new SearchFrame();
 			}
 		});
 		buttonDelete.addMouseListener(new MouseAdapter(){
 			public void mouseClicked(MouseEvent event){
-				DeleteFrame deleteWin = new DeleteFrame();
+				new DeleteFrame();
 			}
 		});
 		buttonDisplay.addMouseListener(new MouseAdapter(){
 			public void mouseClicked(MouseEvent event){
-				DisplayFrame displayWin = new DisplayFrame();
+				new DisplayFrame();
 			}
 		});
 		

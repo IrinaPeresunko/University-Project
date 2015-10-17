@@ -14,6 +14,7 @@ import javax.swing.JLabel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
+import ua.kture.addFrame.AddFrame;
 import ua.kture.containerOfProducts.ContainerOfPrintedProducts;
 import ua.kture.printedProducts.*;
 import ua.kture.searchFrame.ComparingAndSearching;
@@ -291,15 +292,7 @@ public class DeleteFrame extends JFrame{
 	
 		cancel.addMouseListener(new MouseAdapter(){
 			public void mouseClicked(MouseEvent event){
-				name.setText(null);
-				price.setText(null);
-				genre.setText(null);
-				coverType.setText(null);
-				theYearOfPublishing.setText(null);
-				numberOfIssue.setText(null);
-				type.setText(null);
-				hasAdditionalGift.setText(null);
-				hasProgram.setText(null);
+				AddFrame.cleandAfterCompleteing();
 				
 				group.clearSelection();
 				book.setSelected(false);

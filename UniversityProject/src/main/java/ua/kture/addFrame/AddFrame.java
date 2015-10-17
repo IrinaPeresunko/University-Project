@@ -34,15 +34,15 @@ public class AddFrame extends JFrame{
 	JButton ok = new JButton("Add");
 	JButton cancel = new JButton("Cancel");
 	
-	JTextField name = new JTextField();
-	JTextField price = new JTextField();
-	JTextField genre = new JTextField();
-	JTextField coverType = new JTextField();
-	JTextField theYearOfPublishing = new JTextField();
-	JTextField numberOfIssue = new JTextField();
-	JTextField type = new JTextField();
-	JTextField hasAdditionalGift = new JTextField();
-	JTextField hasProgram = new JTextField();
+	static JTextField name = new JTextField();
+	static JTextField price = new JTextField();
+	static JTextField genre = new JTextField();
+	static JTextField coverType = new JTextField();
+	static JTextField theYearOfPublishing = new JTextField();
+	static JTextField numberOfIssue = new JTextField();
+	static JTextField type = new JTextField();
+	static JTextField hasAdditionalGift = new JTextField();
+	static JTextField hasProgram = new JTextField();
 	
 	JLabel labelName = new JLabel("name");
 	JLabel labelPrice = new JLabel("price");
@@ -193,16 +193,6 @@ public class AddFrame extends JFrame{
 		
 		ok.addMouseListener(new MouseAdapter(){
 			public void mouseClicked(MouseEvent event){ 
-//				String gettingName = null;
-//				double gettingPrice = 0;
-//				
-//				String gettingGenre = null;
-//				String gettingCoverType = null;
-//				int gettingTheYearOfPublishing = 0;
-//				int gettingNumberOfIssue = 0;
-//				String gettingType = null;
-//				boolean gettingIfHasAdditionalGift = false;
-//				boolean gettingIfHasProgram = false;
 				 
 				if(book.isSelected()){
 					MainFrame.add(new ua.kture.printedProducts.Book(name.getText(),Double.parseDouble(price.getText()),
@@ -244,15 +234,8 @@ public class AddFrame extends JFrame{
 		
 		cancel.addMouseListener(new MouseAdapter(){
 			public void mouseClicked(MouseEvent event){
-				name.setText(null);
-				price.setText(null);
-				genre.setText(null);
-				coverType.setText(null);
-				theYearOfPublishing.setText(null);
-				numberOfIssue.setText(null);
-				type.setText(null);
-				hasAdditionalGift.setText(null);
-				hasProgram.setText(null);
+				
+				cleandAfterCompleteing();
 				
 				group.clearSelection();
 				book.setSelected(false);
@@ -265,6 +248,17 @@ public class AddFrame extends JFrame{
 		
 	}
 	
+	public static void cleandAfterCompleteing(){
+		name.setText(null);
+		price.setText(null);
+		genre.setText(null);
+		coverType.setText(null);
+		theYearOfPublishing.setText(null);
+		numberOfIssue.setText(null);
+		type.setText(null);
+		hasAdditionalGift.setText(null);
+		hasProgram.setText(null);
+	}
 	
 }
 

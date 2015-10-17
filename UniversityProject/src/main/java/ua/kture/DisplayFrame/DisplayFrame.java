@@ -12,15 +12,20 @@ import javax.swing.JFrame;
 import javax.swing.JList;
 import javax.swing.JPanel;
 
-
 import ua.kture.comparator.SortingByTypeOfClassByAscendingWay;
+import ua.kture.editFrame.EditFrame;
+import ua.kture.printedProducts.Book;
+import ua.kture.printedProducts.Magazine;
+import ua.kture.printedProducts.Newspaper;
 //import ua.kture.comparator.SortingByPriceByDescendingWay;
 import ua.kture.printedProducts.PrintedProduct;
 import ua.kture.swing.mainFrame.MainFrame;
 
 
 public class DisplayFrame {
+	
 	private static JFrame displayWindow;
+	private static PrintedProduct productForEditing;
 	
 	private static JList<String> viewList = new JList<String>();
 	private static DefaultListModel<String> productData = new DefaultListModel<String>();
@@ -48,7 +53,7 @@ public class DisplayFrame {
 		
 		DisplayFrame.getInstance();
 		
-		MainFrame.fillContainer();
+		//MainFrame.fillContainer();
 		for(int i=0;i<MainFrame.getListOfProducts().count();i++){
 			productData.addElement(MainFrame.getListOfProducts().getElementByIndex(i).toString());
 		}
@@ -76,7 +81,9 @@ public class DisplayFrame {
 		
 		buttonEdit.addMouseListener(new MouseAdapter(){
 			public void mouseClicked(MouseEvent event){
-				
+				productForEditing = MainFrame.getListOfProducts().
+						getElementByIndex(viewList.getSelectedIndex());
+				new EditFrame(productForEditing);	
 			}
 		});
 		
@@ -130,4 +137,55 @@ public class DisplayFrame {
 			}
 		});
 	}
+	
+	public static void editBook(String inputName,double inputPrice,String inputGenre,String inputCoverType,
+			int inputTheYearOfPublishing){
+		
+		int index = viewList.getSelectedIndex();
+		Book book = (Book) MainFrame.getListOfProducts().getElementByIndex(index);
+		
+			book.setNameOfProduct(inputName);
+			book.setPrice(inputPrice);
+			book.setGenre(inputGenre);
+			book.setCoverType(inputCoverType);
+			book.setTheYearOfPublishing(inputTheYearOfPublishing);
+			
+			productData.insertElementAt(book.toString(), index);
+			productData.remove(index+1);
+		
+	}
+	
+	public static void editMagazine(String inputName,double inputPrice,int inputNumberOfIssue,String inputType,
+			boolean inputHasAdditionalGift){
+		
+		int index = viewList.getSelectedIndex();
+		Magazine magazine = (Magazine) MainFrame.getListOfProducts().getElementByIndex(index);
+		
+			magazine.setNameOfProduct(inputName);
+			magazine.setPrice(inputPrice);
+			magazine.setNumberOfIssue(inputNumberOfIssue);
+			magazine.setType(inputType);
+			magazine.setIfMagazineHasAdditionalGift(inputHasAdditionalGift);
+
+			productData.insertElementAt(productForEditing.toString(), index);
+			productData.remove(index+1);
+		
+	}
+	
+	public static void editNewspaper(String inputName,double inputPrice,int inputNumberOfIssue,
+			boolean inputHasProgram){
+		
+		int index = viewList.getSelectedIndex();
+		Newspaper newspaper = (Newspaper) MainFrame.getListOfProducts().getElementByIndex(index);
+		
+			newspaper.setNameOfProduct(inputName);
+			newspaper.setPrice(inputPrice);
+			newspaper.setNumberOfIssue(inputNumberOfIssue);
+			newspaper.setHasProgram(inputHasProgram);
+		
+			productData.insertElementAt(productForEditing.toString(), index);
+			productData.remove(index+1);
+	}
+	
 }
+
