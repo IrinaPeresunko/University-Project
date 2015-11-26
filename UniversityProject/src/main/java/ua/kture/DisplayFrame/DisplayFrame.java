@@ -10,6 +10,7 @@ import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import ua.kture.comparator.SortingByTypeOfClassByAscendingWay;
@@ -98,7 +99,12 @@ public class DisplayFrame {
 		
 		buttonCalculateCost.addMouseListener(new MouseAdapter(){
 			public void mouseClicked(MouseEvent event){
-				
+				//new CalculateCostFrame();
+				JOptionPane.showMessageDialog(null, getResultTextForLabel(
+						MainFrame.getListOfProducts().count(),
+						MainFrame.getListOfProducts().calculateCost(),
+						MainFrame.getListOfProducts().calculateAverageCost()));
+
 			}
 		});
 		
@@ -185,6 +191,14 @@ public class DisplayFrame {
 		
 			productData.insertElementAt(productForEditing.toString(), index);
 			productData.remove(index+1);
+	}
+	
+	public String getResultTextForLabel(int counOfProducts, double cost, double averageCost){
+		StringBuilder builder = new StringBuilder();
+		builder.append("The count of printed product that are registred in the registration book is ")
+		.append(counOfProducts).append("."+"\n").append("The final cost of all products is ").append(cost)
+		.append("."+"\n").append("The average cost is ").append(averageCost);
+		return builder.toString();
 	}
 	
 }

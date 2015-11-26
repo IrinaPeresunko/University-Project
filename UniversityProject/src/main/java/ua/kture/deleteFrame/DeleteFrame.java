@@ -292,7 +292,7 @@ public class DeleteFrame extends JFrame{
 	
 		cancel.addMouseListener(new MouseAdapter(){
 			public void mouseClicked(MouseEvent event){
-				AddFrame.cleandAfterCompleteing();
+				AddFrame.cleanedAfterCompleteing();
 				
 				group.clearSelection();
 				book.setSelected(false);

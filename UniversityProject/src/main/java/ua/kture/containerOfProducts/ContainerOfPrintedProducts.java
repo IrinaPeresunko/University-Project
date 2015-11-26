@@ -78,6 +78,26 @@ public class ContainerOfPrintedProducts {
 	}
 	
 	/*
+	 * method to calculate the cost of all products
+	 */
+	public double calculateCost(){
+		double cost = 0;
+		
+		for(PrintedProduct product : containerOfProducts){
+			cost+=product.getPrice();
+		}
+		
+		return cost;
+	}
+	
+	/*
+	 * method to calculate the average cost of all products
+	 */
+	public double calculateAverageCost() {
+		return  calculateCost()/count();
+	}
+	
+	/*
 	 * method to clear all items in the container, used for tests
 	 */
 	public void clear(){
@@ -128,4 +148,5 @@ public class ContainerOfPrintedProducts {
 			innerCounter--;	
 		}
 	}
+	
 }

@@ -23,6 +23,8 @@ public class EditFrame extends JFrame{
 	JButton edit = new JButton("Edit");
 	JButton cancel = new JButton("Cancel");
 	
+	JLabel label = new JLabel("What you want to edit?");
+	
 	JTextField name = new JTextField();
 	JTextField price = new JTextField();
 	JTextField genre = new JTextField();
@@ -64,6 +66,7 @@ public class EditFrame extends JFrame{
 		
 		this.productForEditing = productForEditing;
 		final String nameOfClass = productForEditing.getClass().getSimpleName();
+		label.setBounds(230, 20, 200, 20);
 		
 		editWindow.setBounds(100, 100, 600, 400);
 		editWindow.setLayout(null);
@@ -96,6 +99,7 @@ public class EditFrame extends JFrame{
 		hasAdditionalGift.setBounds(300, 210, 180, 25); 
 		hasProgram.setBounds(300, 240, 180, 25); 
 		
+		editWindow.add(label);
 		editWindow.add(labelName);
 		editWindow.add(labelPrice);
 		editWindow.add(labelGenre);
@@ -141,7 +145,7 @@ public class EditFrame extends JFrame{
 							
 				
 				}
-				AddFrame.cleandAfterCompleteing();
+				AddFrame.cleanedAfterCompleteing();
 				
 				editWindow.setVisible(false);
 		}
@@ -149,7 +153,7 @@ public class EditFrame extends JFrame{
 	
 		cancel.addMouseListener(new MouseAdapter(){
 			public void mouseClicked(MouseEvent event){
-				AddFrame.cleandAfterCompleteing();
+				AddFrame.cleanedAfterCompleteing();
 				
 				editWindow.setVisible(false);	
 			}

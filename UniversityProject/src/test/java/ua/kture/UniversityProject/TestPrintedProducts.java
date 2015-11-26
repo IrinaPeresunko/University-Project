@@ -5,6 +5,7 @@ import java.util.Iterator;
 import org.junit.Test;
 
 import ua.kture.comparator.SortingByPriceByDescendingWay;
+import ua.kture.comparator.SortingByTypeOfClassByAscendingWay;
 import ua.kture.containerOfProducts.ContainerOfPrintedProducts;
 import ua.kture.printedProducts.*;
 import ua.kture.searchFrame.ComparingAndSearching;
@@ -196,10 +197,13 @@ public class TestPrintedProducts extends TestCase{
 		PrintedProduct[] expectedPositionOfElement = {
 				arrayOfProducts[2],arrayOfProducts[3],arrayOfProducts[0],arrayOfProducts[1]
 		};
+		
 		PrintedProduct[] positionOfElementAfterSorting = new PrintedProduct[arrayOfProducts.length];
+		
 		for(int i=0;i<arrayOfProducts.length;i++){
 			positionOfElementAfterSorting[i] = container.getElementByIndex(i);
 		}
+		
 		assertTrue("Arrays are equal", java.util.Arrays
 				.equals(expectedPositionOfElement,positionOfElementAfterSorting));
 		
@@ -228,10 +232,13 @@ public class TestPrintedProducts extends TestCase{
 		PrintedProduct[] expectedPositionOfElement = {
 				arrayOfProducts[1],arrayOfProducts[0],arrayOfProducts[3],arrayOfProducts[2]
 		};
+		
 		PrintedProduct[] positionOfElementAfterSorting = new PrintedProduct[arrayOfProducts.length];
+		
 		for(int i=0;i<arrayOfProducts.length;i++){
 			positionOfElementAfterSorting[i] = container.getElementByIndex(i);
 		}
+		
 		assertTrue("Arrays are equal", java.util.Arrays
 				.equals(expectedPositionOfElement,positionOfElementAfterSorting));
 		
@@ -404,4 +411,82 @@ public class TestPrintedProducts extends TestCase{
 				+ " and some of them there are in the constructor of product",result);
 		
 	}
+	
+	/*
+	 * test to check method of calculating cost of all products
+	 */
+	@Test
+	public void testToCalculateCostOfAllProducts(){
+		
+		container.add(new Book("TestBook",100,"testing","hardcover",2015));
+		container.add(new Magazine("TestMagazine",200,1,"testing",true));
+		container.add(new Newspaper("TestNewspaper",300,1,true));
+		
+		double cost = 600;
+		
+		double expectedCost = container.calculateCost();
+		
+		assertEquals("The result should be true because costs are equals",cost,expectedCost);
+		
+		container.clear();
+	}
+	
+	/*
+	 * test to check method of calculating average cost of all products
+	 */
+	@Test
+	public void testToCalculateAverageCostOfAllProducts(){
+		
+		container.add(new Book("TestBook",100,"testing","hardcover",2015));
+		container.add(new Magazine("TestMagazine",200,1,"testing",true));
+		container.add(new Newspaper("TestNewspaper",300,1,true));
+		
+		double cost = 200;
+		
+		double expectedCost = container.calculateAverageCost();
+		
+		assertEquals("The result should be true because average costs are equals",cost,expectedCost);
+		
+		container.clear();
+	}
+	
+	/*
+	 * test to check that method of sorting elements by ascending by type,
+	 * using comparator, works correctly 
+	 */
+	@Test
+	public void testSortByTypeOfClassByAscendingWay(){
+		
+		PrintedProduct[] arrayOfProducts = new PrintedProduct[4];
+		
+			arrayOfProducts[0] = new Magazine("Dr. Dobb's Journal", 200, 3,"programming",false);
+			arrayOfProducts[1] = new Book("Core Java",500,"programming","hardcover",2015);
+			arrayOfProducts[2] = new Newspaper("Java Developer's Journal",300,11,false);
+			arrayOfProducts[3] = new Book("Effective Java 2",800,"programming","softcover",2008);
+		
+		for(int i=0; i<arrayOfProducts.length;i++){
+			container.add(arrayOfProducts[i]);
+		}
+		
+		container.sort(new SortingByTypeOfClassByAscendingWay());
+		
+		PrintedProduct[] expectedPositionOfElement = {
+				arrayOfProducts[1],arrayOfProducts[3],arrayOfProducts[0],arrayOfProducts[2]
+		};
+		
+		PrintedProduct[] positionOfElementAfterSorting = new PrintedProduct[arrayOfProducts.length];
+		
+		for(int i=0;i<arrayOfProducts.length;i++){
+			positionOfElementAfterSorting[i] = container.getElementByIndex(i);
+		}
+		assertTrue("Arrays are equal", java.util.Arrays
+				.equals(expectedPositionOfElement,positionOfElementAfterSorting));
+		
+		container.clear();
+	}
+	
+	
+	//fill b,m,n
+	//edit b,m,n
+	
 }

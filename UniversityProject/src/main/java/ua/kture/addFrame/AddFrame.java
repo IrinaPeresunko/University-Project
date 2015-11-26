@@ -235,7 +235,7 @@ public class AddFrame extends JFrame{
 		cancel.addMouseListener(new MouseAdapter(){
 			public void mouseClicked(MouseEvent event){
 				
-				cleandAfterCompleteing();
+				cleanedAfterCompleteing();
 				
 				group.clearSelection();
 				book.setSelected(false);
@@ -248,7 +248,7 @@ public class AddFrame extends JFrame{
 		
 	}
 	
-	public static void cleandAfterCompleteing(){
+	public static void cleanedAfterCompleteing(){
 		name.setText(null);
 		price.setText(null);
 		genre.setText(null);
